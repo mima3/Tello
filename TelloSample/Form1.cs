@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define DECODE_H264
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +21,7 @@ namespace TelloSample
 {
     public partial class Form1 : Form
     {
+#if (DECODE_H264)
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct H264DecoderResult
         {
@@ -44,12 +47,13 @@ namespace TelloSample
 
         [DllImport("kernel32.dll", EntryPoint = "CopyMemory", SetLastError = false)]
         public static extern void CopyMemory(IntPtr dest, IntPtr src, uint count);
-
+ #endif
 
         private UdpClient udpForCmd;     //コマンド結果受信用クライアント
         private UdpClient udpForStsRecv; //ステータスの結果受信用クライアント
+#if (DECODE_H264)
         private UdpClient udpForVideo;   //ビデオストリームの受信用
-
+#endif
         public Form1()
         {
             InitializeComponent();
@@ -95,8 +99,9 @@ namespace TelloSample
         {
             this.udpForCmd = new UdpClient(0);
             this.udpForStsRecv = new UdpClient(8890);
+#if (DECODE_H264)
             this.udpForVideo = new UdpClient(11111);
-
+#endif
 
             // コマンド結果の受信処理
             Task.Run(() => {
@@ -140,6 +145,7 @@ namespace TelloSample
 
             });
 
+#if (DECODE_H264)
             // ビデオストリームの受信処理
             Task.Run(() => {
                 IPEndPoint remoteEP = null;//任意の送信元からのデータを受信
@@ -199,6 +205,7 @@ namespace TelloSample
                 _TermH264Decoder();
                 video.Release();
             });
+#endif
 
         }
 
