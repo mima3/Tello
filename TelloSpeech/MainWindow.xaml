@@ -1,0 +1,16 @@
+﻿<Window x:Class="TelloSpeech.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TelloSpeech"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="491" Width="364">
+    <Grid Margin="0,0,0,-11">
+        <Button x:Name="btnConnect" Content="接続" HorizontalAlignment="Left" Height="39" Margin="10,10,0,0" VerticalAlignment="Top" Width="92" Click="btnConnect_Click"/>
+        <TextBlock x:Name="txbStatus" HorizontalAlignment="Left" Height="393" Margin="10,68,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="336"/>
+        <TextBox x:Name="txtCmd" HorizontalAlignment="Left" Height="23" Margin="114,12,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="232" IsEnabled="False"/>
+        <TextBox x:Name="txtResult" HorizontalAlignment="Left" Height="23" Margin="114,40,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="232" IsEnabled="False"/>
+
+    </Grid>
+</Window>
